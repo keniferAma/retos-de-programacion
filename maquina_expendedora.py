@@ -30,19 +30,16 @@ def machine(product, cash):
         return f"Insufficient cash. {[cash]}"
     else:
         change_operation = cash - products[product]
-        print(change_operation)
-        while change_operation > 5:
-            for c in change_types:
-                if change_operation > c:
-                    change.append(c)
-                    change_operation -= c
+        for c in change_types:
+            while change_operation >= c:
+                change.append(c)
+                change_operation -= c
                     
+            print(change_operation)
 
-                    
-                
 
     return f"{product} {change}"
 
-print(machine("soda", 100))
+print(machine("potatoes", 50))
 
 
