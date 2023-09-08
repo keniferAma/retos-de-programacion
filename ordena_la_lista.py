@@ -27,10 +27,26 @@ def matriz(number_list: list, mode: str) -> list:
                         number_list_2.remove(n1)
 
 
+    if mode == "Desc":
+        while number_list_2:
+            for n1 in number_list:
+                trues = 0
+                for n2 in number_list_2:
+                    if n1 > n2:
+                        trues += 1
+
+                    if trues == len(number_list) - 1:
+                        result.append(n1)
+                        number_list_2.remove(n1)
+
             
 
     return result
 
-print(matriz([4, 2, 6, 8, 9], "Asc"))
+
+values = [4, 2, 6, 8, 7, 9, 1]
+
+
+print(matriz(values, "Desc"))
 
 
