@@ -84,7 +84,29 @@ butterfly = Planta(49, 30)
 print(pelea(charizard, butterfly))
 
 
+# solucion hecha por la inteligencia artificial de bing.
 
+def calcular_dano(tipo_atacante, tipo_defensor, ataque, defensa):
+    
+    efectividad = {
+        'Agua': {'Fuego': 2, 'Planta': 0.5, 'Eléctrico': 1, 'Agua': 1},
+        'Fuego': {'Agua': 0.5, 'Planta': 2, 'Eléctrico': 1, 'Fuego': 1},
+        'Planta': {'Agua': 2, 'Fuego': 0.5, 'Eléctrico': 1, 'Planta': 1},
+        'Eléctrico': {'Agua': 2, 'Fuego': 1, 'Planta': 0.5, 'Eléctrico': 1}
+    }
+
+    if tipo_atacante not in efectividad or tipo_defensor not in efectividad[tipo_atacante]:
+        raise ValueError("Tipo de Pokémon no válido")
+
+    if not (1 <= ataque <= 100) or not (1 <= defensa <= 100):
+        raise ValueError("Ataque y defensa deben estar entre 1 y 100")
+
+    dano = 50 * (ataque / defensa) * efectividad[tipo_atacante][tipo_defensor]
+    return dano
+
+# Ejemplo de uso
+dano = calcular_dano('Fuego', 'Planta', 80, 50)
+print(dano)
    
 
 
