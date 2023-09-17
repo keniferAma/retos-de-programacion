@@ -67,4 +67,37 @@ def conteo(libro):
 libros = [60, 78, 34, 129, 37, 229]
 print(conteo(libros))
 
+# Vamos a intentar traer la lógica para explicar el funcionamiento de este ejercicio de recursividad.
+
+
+# En el primer guardado de la función tendremos 60 + [78, 34, 129, 37, 229] 
+# ALGO MUY IMPORTANTE ES TENER EN CUENTA QUE LO QUE ESTÁ DENTRO DE LA FUNCIÓN NO ES UN RESULTADO DEFINITIVO.
+# ES DECIR, NO ES EL VALOR QUE SE QUEDARA EN ESA FOTOGRAFIA.
+
+# En el segundo guardado de la función tendremos return 78 + [34, 129, 37, 229]
+
+# En el tercer guardado de la función tendremos return 34 + [129, 37, 229]
+
+# En el cuarto guardado de la función tendremos return 129 + [37, 229]
+
+# En el quinto guardado de la función tendremos return 37 + [229]
+
+# En el sexto guardado de la funcion el condicional nos da return 229:
+# es decir, que la función se transforma en 229 y sale de la pila.
+
+# Volvemos al quinto guardado, el cual tenemos 37 + el return de 229, lo sumamos y sale la función. es decir 266.
+
+# Volvemos al cuarto guardado, el cual tenemos return 129 + [37, 229], el return anterior nos dio 266 entonces lo sumamos
+# y nos da 395 (recordar que todo esto es return)
+
+# Volvemos al tercer guardado, el cual tenemos return 34 + [129, 37, 229], estos de la lista ya estan resueltos 
+# con la funcion saliente anterior mas libro[0], que en su caso QUEDAN SI O SI EN LA FOTOGRAFIA, AL NO PERTENERCER 
+# DIRECTAMENTE A LA FUNCIÓN.
+
+# y asi nos vamos sucesivamente.
+
+
+
+
+
 
