@@ -98,7 +98,7 @@ print(conteo(libros))
 
 
 
-
+# Factorial recursivo
 def factorial(n):
     if n == 1:
         return 1
@@ -107,6 +107,7 @@ def factorial(n):
 print(factorial(3))
 
 
+# Fibonacci recursivo
 def fibonacci(n):
     if n <= 0:
         return "El input debe ser un número entero positivo."
@@ -120,12 +121,71 @@ def fibonacci(n):
 print(fibonacci(7))
 
 
+
+# Algoritmo recursivo para sumar:
 def suma(n):
     if n == 0:
         return 0
     return n + suma(n - 1)
 
 print(suma(2))
+
+
+
+
+# Ahora vamos a intentar crear un algoritmo de ordenamiento por recursividad.
+
+lista = [2, 4, 5, 6, 1, 9, 0]
+
+def merge_sort(lista):
+    if len(lista) == 1:
+        return lista
+    
+    division = len(lista) // 2
+    lista_izquierda = lista[:division]
+    lista_derecha = lista[division:]
+
+    organizar_izquierda = merge_sort(lista_izquierda)
+    organizar_derecha = merge_sort(lista_derecha)
+    
+
+    print(organizar_izquierda)
+    print(organizar_derecha)
+
+    return merge(organizar_derecha, organizar_izquierda)
+
+
+def merge(l_derecha, l_izquierda):
+    merge_organizado = []
+
+    while len(l_derecha) > 0 and len(l_izquierda) > 0:
+        if l_izquierda[0] > l_derecha[0]:
+            merge_organizado.append(l_derecha[0])
+            l_derecha.pop(0)
+        else:
+            merge_organizado.append(l_izquierda[0])
+            l_izquierda.pop(0)
+
+    while len(l_izquierda) > 0:
+        merge_organizado.append(l_izquierda[0])
+        l_izquierda.pop(0)
+
+    while len(l_derecha) > 0:
+        merge_organizado.append(l_derecha[0])
+        l_derecha.pop(0)
+
+    return merge_organizado
+
+
+print(merge_sort(lista))
+
+
+
+
+
+
+
+
 
 
 
