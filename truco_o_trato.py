@@ -33,7 +33,7 @@ class Person(pydantic.BaseModel):
 
 
 jose = Person(name="jose", age=12, size=156)
-alejandro = Person(name="alejandro", age=14, size=134)
+alejandro = Person(name="alejandro", age=4, size=134)
 fernando = Person(name="fernando", age=15, size=143)
 
 
@@ -44,10 +44,10 @@ def truco_o_trato(*, niños: list, truco_o_trato: str):
     dulces = ["🍰", "🍬", "🍡", "🍭", "🍪", "🍫", "🧁", "🍩"]
     n = len(niños)
     
-    if truco_o_trato == "truco": 
-        result = [] 
+    if truco_o_trato == "truco":  
         numero_de_sustos = 0
         altura = 0
+
         for i in range(n):    
             numero_de_sustos += len(niños[i].name) // 2
             altura += niños[i].size
@@ -56,12 +56,28 @@ def truco_o_trato(*, niños: list, truco_o_trato: str):
         numero_de_sustos += 3 * (altura // 100)
 
         return random.choices(sustos, k=numero_de_sustos)
-            
+    
+    if truco_o_trato == "trato":
+        numero_de_dulces = 0
 
-print(truco_o_trato(niños=niños, truco_o_trato="truco"))  
+        for i in range(n):
+            numero_de_dulces += len(niños[i].name)
+            if niños[i].age > 10:
+                numero_de_dulces += 3
+            elif niños[i].age >= 3 and niños[i].age <= 10:
+                numero_de_dulces += niños[i].age // 3
 
+            if niños[i].size > 150:
+                numero_de_dulces += 6
+            elif niños[i].size <= 150 and niños[i].size >= 50:
+                numero_de_dulces += 2 * int(niños[i].size // 5 * 0.1)
+
+        return random.choices(dulces, k=numero_de_dulces)
 
         
+            
+
+print(truco_o_trato(niños=niños, truco_o_trato="trato"))  
 
 
     
