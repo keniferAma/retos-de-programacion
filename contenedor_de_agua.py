@@ -63,7 +63,39 @@ print(rebose(array))
 for i in salida:
     print(" ".join(i))
 
+# Solución hecha por la inteligencia artificial, pero solamente hace el cálculo del agua atrapada, y no su 
+# representación.
+def calcular_agua_atrapada(bloques):
+    agua_atrapada = 0
+    max_izq = max_der = 0
+    izq = 0
+    der = len(bloques) - 1
 
+    while izq <= der:
+        if bloques[izq] < bloques[der]:
+            if bloques[izq] > max_izq:
+                max_izq = bloques[izq]
+            else:
+                agua_atrapada += max_izq - bloques[izq]
+            izq += 1
+        else:
+            if bloques[der] > max_der:
+                max_der = bloques[der]
+            else:
+                agua_atrapada += max_der - bloques[der]
+            der -= 1
+
+    return agua_atrapada
+
+bloques = [4, 0, 3, 6, 1, 3]
+print(calcular_agua_atrapada(bloques))
+
+
+from pydantic import BaseModel
+from fastapi import APIRouter
+
+
+app = APIRouter.add_api_route()
 
 
 
