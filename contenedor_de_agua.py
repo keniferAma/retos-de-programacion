@@ -91,11 +91,6 @@ bloques = [4, 0, 3, 6, 1, 3]
 print(calcular_agua_atrapada(bloques))
 
 
-from pydantic import BaseModel
-from fastapi import APIRouter
-
-
-app = APIRouter.add_api_route()
 
 
 
