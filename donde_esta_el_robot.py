@@ -42,3 +42,30 @@ def robot(pasos: list) -> str:
 
 sequence = [10, 5, -2, 7, -3, -3]
 print(robot(sequence))
+
+
+# Ahora vamos a ver la version hecha por la inteligencia artificial:
+
+def calcular_posicion_robot(pasos):
+    # Inicializamos las coordenadas del robot
+    x, y = 0, 0
+    # Inicializamos la dirección en la que está mirando el robot
+    direccion = 0  # 0: arriba, 1: izquierda, 2: abajo, 3: derecha
+
+    for paso in pasos:
+        if direccion == 0:
+            y += paso
+        elif direccion == 1:
+            x -= paso
+        elif direccion == 2:
+            y -= paso
+        elif direccion == 3:
+            x += paso
+
+        # El robot gira 90 grados en sentido contrario a las agujas del reloj
+        direccion = (direccion + 1) % 4
+
+    return x, y
+
+# Prueba del código
+print(calcular_posicion_robot([10, 5, -2]))  # Debería imprimir (-5, 12)
