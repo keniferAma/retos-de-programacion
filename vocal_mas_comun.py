@@ -40,7 +40,26 @@ string = "aberlardoAiii"
 print(vocal_repeated(string))
 
 
+# Ahora vamos a pegar la version hecha por la inteligencia artificial:
 
+import re
+
+def vocal_repeated(string: str) -> str:
+    # Definir las vocales y sus patrones
+    vocales = {'a': r"[Aaá]", 'e': r"[Eeé]", 'i': r"[Iií]", 'o': r"[Ooó]", 'u': r"[Uuú]"}
+    
+    # Inicializar un diccionario para almacenar los conteos
+    conteos = {vocal: 0 for vocal in vocales}
+    
+    # Contar las ocurrencias de cada vocal
+    for vocal, patron in vocales.items():
+        conteos[vocal] = len(re.findall(patron, string))
+    
+    # Encontrar la vocal con el mayor conteo
+    max_conteo = max(conteos.values()) # Interesante el uso de "max". Para tenerlo en cuenta.
+    vocales_maximas = [vocal for vocal, conteo in conteos.items() if conteo == max_conteo]
+    
+    return ','.join(vocales_maximas)
 
 
 
