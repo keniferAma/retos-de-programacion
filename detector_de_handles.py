@@ -22,3 +22,30 @@ print(result)
 print(result_2)
 print(result_3)  
 
+
+
+# Now we're gonna see the IA version:
+
+import re
+
+def detectar_handles(texto):
+    # Expresión regular para handles de usuario
+    patron_usuario = r"@\w+"
+    usuarios = re.findall(patron_usuario, texto)
+
+    # Expresión regular para handles de hashtag
+    patron_hashtag = r"#\w+"
+    hashtags = re.findall(patron_hashtag, texto)
+
+    # Expresión regular para handles web
+    patron_web = r"(www\.|http://|https://)[a-zA-Z0-9-]+(\.com|\.es)"
+    webs = [match.group() for match in re.finditer(patron_web, texto)]
+
+    return usuarios, hashtags, webs
+
+# Prueba la función con un ejemplo
+texto = "#NosEstanAcabando @ayuda por favor http://nosestanmatando.com"
+usuarios, hashtags, webs = detectar_handles(texto)
+print("Usuarios:", usuarios)
+print("Hashtags:", hashtags)
+print("Webs:", webs)
