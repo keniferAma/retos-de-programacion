@@ -46,7 +46,7 @@ string = "verdades"
 print(encrypt(string))
     
 
-    
+
 def desencrypt(string):
     string = string[:-3]
     result = ""
@@ -73,3 +73,26 @@ def desencrypt(string):
     return result
 
 print(desencrypt("s1d0dr1vaca"))
+
+
+
+def karaca_encrypt_decrypt(text):
+    if not isinstance(text, str):
+        return "Error: Input must be a string"
+    if text == "":
+        return "Error: Input string cannot be empty"
+    
+    vowels = {'a': '0', 'e': '1', 'i': '2', 'o': '3', 'u': '4'}
+    reverse_vowels = {v: k for k, v in vowels.items()}
+    
+    if text.endswith("aca"):
+        # Decrypt
+        text = text[:-3][::-1]
+        return ''.join([reverse_vowels.get(char, char) for char in text])
+    else:
+        # Encrypt
+        text = text[::-1]
+        return ''.join([vowels.get(char, char) for char in text]) + "aca"
+
+print(karaca_encrypt_decrypt("maraca"))
+
