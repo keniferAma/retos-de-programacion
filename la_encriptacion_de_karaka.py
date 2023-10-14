@@ -96,3 +96,26 @@ def karaca_encrypt_decrypt(text):
 
 print(karaca_encrypt_decrypt("maraca"))
 
+
+print(string[::-1]) # Por lo menos aprendimos algo. invertir un string. Todo gracias al "rebanado de listas"
+
+"""El "rebanado de listas" es una característica en Python que permite acceder a subconjuntos de una lista 
+(o cualquier objeto secuencial, como un string). La sintaxis básica es `lista[inicio:final:paso]`¹²:
+
+- `inicio`: Es el índice donde comienza la rebanada. Si se omite, se asume que es 0.
+- `final`: Es el índice donde termina la rebanada. Este índice no se incluye en la rebanada. 
+Si se omite, se asume que es el final de la lista.
+- `paso`: Es la cantidad de elementos a saltar. Si se omite, se asume que es 1.
+
+Por ejemplo, si tienes una lista `numeros = [0, 1, 2, 3, 4, 5]`, puedes obtener los primeros tres 
+elementos con `numeros[0:3]`, que devuelve `[0, 1, 2]`. También puedes obtener los elementos en las 
+posiciones pares con `numeros[::2]`, que devuelve `[0, 2, 4]`.
+
+Cuando usas un paso negativo, como en `numeros[::-1]`, la lista se recorre en orden inverso¹². 
+Por lo tanto, `numeros[::-1]` devuelve `[5, 4, 3, 2, 1, 0]`, que es la lista original invertida.
+"""
+
+diccionario = {"a": 0, "b": 1, "c": 2}
+diccionario_al_reves = {value :key for key, value in diccionario.items()}
+print(diccionario_al_reves)
+print(diccionario.get("g", "j"))
