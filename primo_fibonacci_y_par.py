@@ -50,3 +50,50 @@ print(fibonacci(5))
 # de 3. Este sería nuestro resultado final para la secuencia #5 de la secuencia de fibonacci.  
 # PARA TENER BIEN EN CUENTA: SIEMPRE EN CADA STACK, SE CONSERVAN SUS ARGUMENTOS LOCALES Y SU CANTIDAD DE 
 # RECURSIVIDADES. QUEDAN ESTÁTICOS HASTA LA ESPERA DE SU TURNO Y SU CONSGUIENTE SALIDA.
+
+
+
+def prime(number: int) -> bool:
+    output = True
+    for i in range(2, number):
+        if number % i == 0:
+            output = False
+
+    return output
+
+
+def par(number: int) -> bool:
+    
+    if number % 2 == 0:
+        return True
+    else:
+        return False
+
+    
+
+def main(num: int):
+    if (fibonacci(num) == num and
+        prime(num) and par(num)):
+        return f"{num} is fibonacci, prime and par" 
+    
+    elif (fibonacci(num) != num and
+        prime(num) and par(num)):
+        return f"{num} is prime, par and not fibonacci"
+
+    elif (fibonacci(num) != num and
+        not prime(num) and par(num)):
+        return f"{num} is not fibonacci, not prime and par" 
+    
+    elif (fibonacci(num) == num and
+        not prime(num) and par(num)):
+        return f"{num} is fibonacci, not prime and par"
+    
+    elif (fibonacci(num) != num and
+        not prime(num) and not par(num)):
+        return f"{num} is not fibonacci, not prime and impar"
+
+    elif (fibonacci(num) != num and
+        prime(num) and not par(num)):
+        return f"{num} is not fibonacci, prime and impar"
+    
+print(main(7)) 
