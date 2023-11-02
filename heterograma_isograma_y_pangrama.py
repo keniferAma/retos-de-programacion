@@ -21,12 +21,12 @@ print(heterograma("hola cm est"))
 
 def isograma(string: str) -> str:
     amount = string.count(string[0])
-    print(amount)
+    
     for i in "".join(string.split()):
         word = string.count(i)
         if word != amount:
             return f"{string} no es isograma."
-        print(word)
+    
     return f"{string} es isograma."
 
 print(isograma("hola cm est"))
