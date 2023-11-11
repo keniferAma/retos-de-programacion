@@ -58,11 +58,63 @@ lista_de_palabras = [
     "cerdo", "caballo", "escalera", "crispetas",
     "sanguijuela", "legumbre", "navidad", "carretera", 
     "marioneta", "carreta", "mascara", "botella", "espuma",
-    "binoculares", "nevera", "lavadora", "camioneta"
+    "binoculares", "nevera", "lavadora", "camioneta", "motocicleta",
+    "avioneta", "salamandra", "avestruz", "telefono", "advertencia",
+    "autopista", "iluminacion", "gasolina", "madera" 
 ]
         
-print(esconder_palabra(generador_de_palabras(lista_de_palabras)))
 
 
+def solucion(palabra: str, palabra_con_hash: str):
+    hash_actualizado = palabra_con_hash
+    vidas = 5
+    letras = []
+    
+    
+    for i in range(len(palabra_con_hash)):
+        if palabra_con_hash[i] == "_":
+            letras.append(palabra[i])
+   
+    while vidas > 0:
+        
+        print(palabra_con_hash)
 
+        letra_o_palabra = input("Escribe la letra o palabra: ")
+
+        if len(letra_o_palabra) > 1:
+            if letra_o_palabra == palabra:
+                print(f"{palabra}\nLa palabra es correcta.")
+                break
+
+            else:
+                vidas -= 1
+                print(f"Incorrecto. Te quedan {vidas} vidas.")
+
+        else:    
+            if letra_o_palabra in letras:
+                for j in range(len(palabra)):
+
+                    if letra_o_palabra == palabra[j]:
+                       hash_actualizado = hash_actualizado[:j] + palabra[j] + hash_actualizado[j + 1:]
+                    
+                
+            else:
+                vidas -= 1
+                print(f"Incorrecto. Te quedan {vidas} vidas.")
+                
+    
+
+            palabra_con_hash = hash_actualizado
+
+            if palabra == hash_actualizado:
+                print(f"{palabra}\nLa palabra es correcta.")
+                break
+
+
+palabra = generador_de_palabras(lista_de_palabras)
+
+palabra_hasheada = esconder_palabra(palabra)
+
+solucion(palabra, palabra_hasheada)
+    
 
