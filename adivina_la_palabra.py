@@ -118,3 +118,49 @@ palabra_hasheada = esconder_palabra(palabra)
 solucion(palabra, palabra_hasheada)
     
 
+
+
+#### version hecha por la inteligencia artificial ####
+
+import random
+
+def ocultar_letras(palabra):
+    num_letras_ocultas = int(len(palabra) * 0.6)
+    indices = random.sample(range(len(palabra)), num_letras_ocultas)
+    return "".join("_" if i in indices else letra for i, letra in enumerate(palabra))
+
+def jugar_adivinanza(palabras, intentos):
+    palabra = random.choice(palabras)
+    palabra_oculta = ocultar_letras(palabra)
+    print(f"Palabra a adivinar: {palabra_oculta}")
+    print(f"Número de intentos restantes: {intentos}")
+
+    while intentos > 0:
+        entrada = input("Introduce una letra o una palabra: ")
+        if len(entrada) == 1:
+            if entrada in palabra:
+                palabra_oculta = "".join(entrada if letra == entrada else palabra_oculta[i] for i, letra in enumerate(palabra))
+                print(f"¡Bien hecho! La palabra ahora es: {palabra_oculta}")
+            else:
+                intentos -= 1
+                print(f"¡Lo siento! La letra no está en la palabra. Intentos restantes: {intentos}")
+        elif len(entrada) == len(palabra):
+            if entrada == palabra:
+                print("¡Felicidades! Has adivinado la palabra.")
+                return
+            else:
+                intentos -= 1
+                print(f"¡Lo siento! Esa no es la palabra. Intentos restantes: {intentos}")
+        else:
+            print("Entrada inválida. Por favor, introduce una letra o una palabra de la misma longitud que la palabra a adivinar.")
+        if palabra_oculta == palabra:
+            print("¡Felicidades! Has adivinado todas las letras de la palabra.")
+            return
+        if intentos == 0:
+            print("¡Lo siento! Has agotado todos tus intentos.")
+            return
+
+palabras = ["murcielago", "elefante", "cocodrilo", "hipopotamo"]
+intentos = 10
+jugar_adivinanza(palabras, intentos)
+
