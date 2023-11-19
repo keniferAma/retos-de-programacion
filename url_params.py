@@ -10,10 +10,16 @@
 import re
 
 def url_params(url: str) -> list:
+    if not url:
+        return "Nothing to parse."
+    
     pattern = r"=[0-9]{1,}"
     result = re.findall(pattern, url)
-
+    
+    if not result:
+        return "No values."
+    
     return [r[1:] for r in result]
 
 
-print(url_params("https://retosdeprogramacion.com?year=2023&challenge=9"))
+print(url_params("https://retosdeprogramacion.com?year=2023&challenge=0"))
