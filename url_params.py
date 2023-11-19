@@ -23,3 +23,21 @@ def url_params(url: str) -> list:
 
 
 print(url_params("https://retosdeprogramacion.com?year=2023&challenge=0"))
+
+
+
+### version made by IA ###
+
+import re
+
+def url_params(url: str) -> list:
+    if not url:
+        return "Nothing to parse."
+    
+    pattern = r"(?<=\=)[^&]*"
+    result = re.findall(pattern, url)
+    
+    if not result:
+        return "No values."
+    
+    return result
