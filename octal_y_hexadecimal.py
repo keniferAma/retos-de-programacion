@@ -46,3 +46,43 @@ def decimal_a_octal_y_hexadecimal(decimal: int) -> str:
     return f'Hexadecimal= {"".join(hexadecimal[::-1])}, Octal={"".join(octal[::-1])}'
 
 print(decimal_a_octal_y_hexadecimal(10))
+
+
+
+# IA version (version con 2 funciones por separado)#
+
+def decimal_to_octal(decimal):
+    octal = ''
+    while decimal > 0:
+        octal = str(decimal % 8) + octal
+        decimal = decimal // 8
+    return octal
+
+def decimal_to_hexadecimal(decimal):
+    hex_digits = '0123456789ABCDEF' # notese como se ahorra las condicionales mediante la búsqueda de su residuo
+    hexadecimal = ''
+    while decimal > 0:
+        hexadecimal = hex_digits[decimal % 16] + hexadecimal
+        decimal = decimal // 16
+    return hexadecimal
+
+
+# IA version (version con una funcion) #
+
+def decimal_to_octal_hexadecimal(decimal):
+    def decimal_to_octal(decimal):
+        octal = ''
+        while decimal > 0:
+            octal = str(decimal % 8) + octal
+            decimal = decimal // 8
+        return octal
+
+    def decimal_to_hexadecimal(decimal):
+        hex_digits = '0123456789ABCDEF'
+        hexadecimal = ''
+        while decimal > 0:
+            hexadecimal = hex_digits[decimal % 16] + hexadecimal
+            decimal = decimal // 16
+        return hexadecimal
+
+    return decimal_to_octal(decimal), decimal_to_hexadecimal(decimal)
