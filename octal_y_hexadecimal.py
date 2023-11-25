@@ -7,14 +7,17 @@
 
 
 def decimal_a_octal_y_hexadecimal(decimal: int) -> str:
-   
-    if decimal == 0:
+    decimal_1 = decimal
+    decimal_2 = decimal
+
+    if decimal_1 == 0 or decimal_2 == 0:
         return "0"
 
     hexadecimal = []
+    octal = []
 
-    while decimal > 0:
-        residuo = decimal % 16
+    while decimal_1> 0:
+        residuo = decimal_1 % 16
 
         if residuo == 10:
             hexadecimal.append("A")
@@ -32,9 +35,14 @@ def decimal_a_octal_y_hexadecimal(decimal: int) -> str:
             hexadecimal.append(str(residuo))
         
 
-        decimal //= 16 
-    
+        decimal_1 //= 16 
 
-    return "".join(hexadecimal[::-1])
+    while decimal_2 > 0:
+        residuo = decimal_2 % 8
+        octal.append(str(residuo))
+        decimal_2 //= 8
 
-print(decimal_a_octal_y_hexadecimal(11))
+
+    return f'Hexadecimal= {"".join(hexadecimal[::-1])}, Octal={"".join(octal[::-1])}'
+
+print(decimal_a_octal_y_hexadecimal(10))
