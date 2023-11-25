@@ -4,3 +4,37 @@
  * - No está permitido usar funciones propias del lenguaje de programación que
  * realicen esas operaciones directamente.
  */"""
+
+
+def decimal_a_octal_y_hexadecimal(decimal: int) -> str:
+   
+    if decimal == 0:
+        return "0"
+
+    hexadecimal = []
+
+    while decimal > 0:
+        residuo = decimal % 16
+
+        if residuo == 10:
+            hexadecimal.append("A")
+        elif residuo == 11:
+            hexadecimal.append("B")
+        elif residuo == 12:
+            hexadecimal.append("C")
+        elif residuo == 13:
+            hexadecimal.append("D")
+        elif residuo == 14:
+            hexadecimal.append("E")
+        elif residuo == 15:
+            hexadecimal.append("F")
+        else:
+            hexadecimal.append(str(residuo))
+        
+
+        decimal //= 16 
+    
+
+    return "".join(hexadecimal[::-1])
+
+print(decimal_a_octal_y_hexadecimal(11))
