@@ -39,35 +39,41 @@ def analizador_de_texto_v2(path: str) -> None:
     except FileNotFoundError as message:
         raise message
     
+    split = texto.split()
     numero_total_de_palabras = len(texto.split())
     longitud_palabras_individuales = []
     
     numero_de_oraciones = len(texto.split("."))
     lista_limpia = []
-    palabra_mas_larga = 0
+    palabra_mas_larga = []
+    
+    
+    for i in range(0, len(split)):
+        longitud_palabras_individuales.append(len(split[i]))
 
-    for i in texto.split():
-        longitud_palabras_individuales.append(len(i))
+        if len(palabra_mas_larga) == 0:
+            palabra_mas_larga.append(split[i])
 
-        if i[-1] in ["!", "'", ".", ","]:
-            lista_limpia.append(i[:-1])
-        elif i[0] in [".", ":", ";", ",", "-", "¡", "'"]:
-            lista_limpia.append(i[1:])
+        if split[i][-1] in ["!", "'", ".", ","]:
+            lista_limpia.append(split[i][:-1])
+            
+        elif split[i][0] in ["¡", "'"]:
+            lista_limpia.append(split[i][1:])
         else:
-            lista_limpia.append(i)
+            lista_limpia.append(split[i])
 
-
-    print(lista_limpia)
-
+        if i > 1:
+            if len(lista_limpia[i]) > len(palabra_mas_larga[0]):
+                palabra_mas_larga.pop(0)
+                palabra_mas_larga.append(lista_limpia[i])
+            elif len(lista_limpia[i]) == len(palabra_mas_larga[0]):
+                palabra_mas_larga.append(lista_limpia[i])
+        
     longitud_media_de_las_palabras = sum(longitud_palabras_individuales) / numero_total_de_palabras
 
-   
-    print(longitud_media_de_las_palabras)
-    print(numero_de_oraciones)
-    print(sorted(set(longitud_palabras_individuales), reverse=True))
+    print(palabra_mas_larga)
     
-
     return numero_total_de_palabras
 
 
-print(analizador_de_texto_v2(path=path))                                                                                                     
+print(analizador_de_texto_v2(path=path)) 
