@@ -35,3 +35,24 @@ def pairs(primes: list):
 
 
 print(pairs(is_prime(1000)))
+
+
+
+# artificial version #
+
+def sieve_of_eratosthenes(n):
+    primes = [True for i in range(n+1)]
+    p = 2
+    while (p * p <= n):
+        if (primes[p] == True):
+            for i in range(p * p, n+1, p):
+                primes[i] = False
+        p += 1
+    primes_only = [p for p in range(2, n) if primes[p]]
+    return primes_only
+
+def prime_pairs(primes):
+    return [(primes[i], primes[i+1]) for i in range(len(primes)-1) if primes[i+1] - primes[i] == 2]
+
+print(prime_pairs(sieve_of_eratosthenes(1000)))
+
