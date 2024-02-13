@@ -51,7 +51,7 @@ def palidrome(palabra_uno: str, palabra_2: str) -> str:
 print(palidrome(my_string, my_string_2))
 
 
-palabra_1 = 'pirata'
+palabra_1 = 'murcielagoo'
 palabra_2 = 'patria'
 
 def anagrama(palabra_uno: str, palabra_dos: str) -> str:
@@ -62,8 +62,79 @@ def anagrama(palabra_uno: str, palabra_dos: str) -> str:
 print(anagrama(palabra_1, palabra_2)) 
 
 
+palabra_1 = 'murcielago'
+
+def isograma(palabra_uno: str, palabra_dos: str) -> str:
+    letra = ''
+    conteo = 0
+    resultado_palabra_uno = True
+    resultado_palabra_dos = True
+
+    for i in range(len(palabra_uno)):
+        for j in range(i + 1 , len(palabra_uno)):
+            letra = palabra_uno[i]
+            if palabra_uno[j] == palabra_uno[i]:
+                conteo += 1
+
+            if conteo == 1:
+                resultado_palabra_uno = False
+        letra = ''
+        conteo = 0
+        letra += palabra_uno[i]
+
+    for i in range(len(palabra_dos)):
+        if palabra_dos.count(palabra_dos[i]) >= 2: 
+            resultado_palabra_dos = False
+
+    if resultado_palabra_uno and resultado_palabra_dos:
+        return 'Ambas palabras son isogramas.'
+    elif resultado_palabra_uno and not resultado_palabra_dos:
+        return 'La palabra uno es isograma, pero no la segunda.'
+    elif resultado_palabra_dos and not resultado_palabra_uno:
+        return 'La palabra dos es isograma, pero no la primera.'
+    else:
+        return 'Ninguna de las dos palabras es isograma.'            
+
+
+    
+print(isograma(palabra_1, palabra_2))
+
+
+# something we learned today # the add function in sets.
+letras = set()
+
+letras.add('a')
+letras.add('b')
+letras.add('a')
+letras.add('c')
+letras.add('c')
+
+print(letras)
 
 
 
 
+# solution given by bing #
+# the AI set a only function to manage whether a word is isogram or not.
+def es_isograma(palabra: str) -> bool:
+    letras = set()
+    for letra in palabra:
+        if letra in letras:
+            return False
+        letras.add(letra)
+    return True
 
+def isograma(palabra_uno: str, palabra_dos: str) -> str:
+    resultado_palabra_uno = es_isograma(palabra_uno)
+    resultado_palabra_dos = es_isograma(palabra_dos)
+
+    if resultado_palabra_uno and resultado_palabra_dos:
+        return 'Ambas palabras son isogramas.'
+    elif resultado_palabra_uno and not resultado_palabra_dos:
+        return 'La palabra uno es isograma, pero no la segunda.'
+    elif resultado_palabra_dos and not resultado_palabra_uno:
+        return 'La palabra dos es isograma, pero no la primera.'
+    else:
+        return 'Ninguna de las dos palabras es isograma.'            
+
+print(isograma(palabra_1, palabra_2))
