@@ -12,3 +12,18 @@
  * - Deben poder inicializarse y disponer de operaciones para añadir, eliminar,
  *   retornar el número de elementos e imprimir todo su contenido.
  */"""
+
+
+class Exercise:
+    def __init__(self, entry: str):
+        self.entry = entry
+
+    def __repr__(self) -> str:
+        return self.entry
+    
+
+
+
+prove = Exercise('hello')
+print(prove)
+         
