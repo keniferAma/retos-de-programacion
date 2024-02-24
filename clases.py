@@ -15,15 +15,57 @@
 
 
 class Exercise:
+    counter = 0
+
     def __init__(self, entry: str):
         self.entry = entry
+        Exercise.counter += 1
 
     def __repr__(self) -> str:
-        return self.entry
+        return f'{self.entry}'
     
-
 
 
 prove = Exercise('hello')
 print(prove)
          
+prove_2 = Exercise('hello_2')
+print(prove_2.counter)
+
+
+# extra #
+
+class Pila:
+
+    def __init__(self):
+        self.lista = []
+
+    def adding(self, value):
+        self.lista.append(value)
+
+    def substrating(self):
+        self.lista.pop()
+
+    def size(self):
+        return len(self.lista)
+
+    def __repr__(self):
+        return str(self.lista)
+    
+
+example_1 = Pila()
+
+example_1.adding(1)
+print(example_1)
+example_1.adding(3)
+print(example_1)
+example_1.adding(76)
+print(example_1)
+example_1.adding(8)
+print(example_1)
+example_1.adding(90)
+print(example_1)
+example_1.substrating()
+print(example_1)
+print(example_1.size())
+        
