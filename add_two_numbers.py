@@ -25,21 +25,15 @@ It is guaranteed that the list represents a number that does not have leading ze
 
 
 def selecter(list_: list) -> list:
-    previous_list = []
-    final_number = ''
-    for i in list_:
+    result = ''
+    for i in list_[::-1]:
         if len(str(i)) >= 2:
-            for n in str(i):
-                previous_list.append(int(n))
+            for j in str(i)[::-1]:
+                result += j
         else:
-            previous_list.append(i)
+            result += str(i)
 
-    for j in range(len(previous_list) - 1, -1, -1):
-        final_number += str(previous_list[j])
-
-    return int(final_number)
-
-
+    return int(result)
 
 
 def add_two_numbers(list_1: list, list_2: list) -> list:
@@ -51,8 +45,12 @@ def add_two_numbers(list_1: list, list_2: list) -> list:
 
 lista1 = [1423, 56, 3, 78]
 lista2 = [14, 56, 3, 74, 21]
+lista3 = [21, 5, 0, 6, 0, 0]
+lista4 = [0, 0 , 0]
+lista5 = [0, 0, 0]
 
-print(add_two_numbers(lista1, lista2))
+print(add_two_numbers(lista4, lista5))
+
 
 
 
