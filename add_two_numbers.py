@@ -21,7 +21,10 @@ Constraints:
 
 The number of nodes in each linked list is in the range [1, 100].
 0 <= Node.val <= 9
-It is guaranteed that the list represents a number that does not have leading zeros."""
+It is guaranteed that the list represents a number that does not have leading zeros.
+TO KEEP IN MIND: A linked list is based on separate nodes with a single data, this node has the hability to 
+access the next node, and in order to that, can acces the next data. so in linked lists, we can't access the data through 
+their indexes."""
 
 
 def selecter(list_: list) -> list:
@@ -58,7 +61,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
+def adding_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
     head = ListNode(0)
     current = head
     carry = 0
@@ -66,7 +69,8 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
     while l1 or l2 or carry:
         val1  = (l1.val if l1 else 0)
         val2  = (l2.val if l2 else 0)
-        carry, out = divmod(val1+val2 + carry, 10)
+        carry, out = divmod(val1+val2 + carry, 10) #The divmod() function is a built-in function in Python that takes two numbers as
+        #arguments and returns a tuple containing the quotient and the remainder of the division operation12. sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
         
         current.next = ListNode(out)
         current = current.next
@@ -77,7 +81,58 @@ def add_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
     return head.next
 
 
-add_two_numbers(ListNode(2), ListNode(9))
+
+# Python linked list
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+# Create a linked list
+linked_list = LinkedList()
+linked_list.head = Node(10)
+second = Node(20)
+third = Node(30)
+fourth = Node(40)
+
+# Link first node to second and second node to third
+linked_list.head.next = second
+second.next = third
+third.next = fourth
+
+# To access the second node's data, we have to traverse from the head
+print(linked_list.head.next.data)  # Output: 20
+print(linked_list.head.next.next.data)
+print(linked_list.head.next.next.next.data)
+
+
+
+# @return a ListNode
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def addTwoNumbers(self, l1, l2):
+        carry = 0
+        root = n = ListNode(0)
+        while l1 or l2 or carry:
+            v1 = v2 = 0
+            if l1:
+                v1 = l1.val
+                l1 = l1.next
+            if l2:
+                v2 = l2.val
+                l2 = l2.next
+            carry, val = divmod(v1+v2+carry, 10)
+            n.next = ListNode(val)
+            n = n.next
+        return root.next
+
 
 
 
