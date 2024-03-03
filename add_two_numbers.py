@@ -70,7 +70,7 @@ def adding_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
         val1  = (l1.val if l1 else 0)
         val2  = (l2.val if l2 else 0)
         carry, out = divmod(val1+val2 + carry, 10) #The divmod() function is a built-in function in Python that takes two numbers as
-        #arguments and returns a tuple containing the quotient and the remainder of the division operation12. sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        #arguments and returns a tuple containing the quotient and the remainder of the division operation12. 
         
         current.next = ListNode(out)
         current = current.next
@@ -134,6 +134,38 @@ class ListNode(object):
         return root.next
 
 
+
+
+# prove with a regular insert, delete, search in a linked list #
+    
+class PrincipalNode:
+    """This class will gives the single nodes values"""
+    def __init__(self, data=0, next=None): # This None because if we're at the end of the node, this must be none.
+        self.data = data
+        self.next = next
+
+class PrincipalLink:
+    """This class will give the head of the list"""
+    def __init__(self):
+        self.head = PrincipalNode()
+
+
+head_node= PrincipalLink()
+head_node.head = PrincipalNode(1)
+second_node = PrincipalNode(2)
+third_node = PrincipalNode(3)
+
+
+# Linking the nodes #
+
+head_node.head.next = second_node
+second_node.next = third_node
+
+
+print(head_node.head.data)
+print(head_node.head.next.data)
+print(head_node.head.next.next.data)
+print(head_node.head.next.next.next)
 
 
 
