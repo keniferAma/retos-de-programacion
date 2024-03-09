@@ -154,20 +154,37 @@ head_node= PrincipalLink()
 head_node.head = PrincipalNode(1)
 second_node = PrincipalNode(2)
 third_node = PrincipalNode(3)
-
+fourth_node = PrincipalNode(4)
 
 # Linking the nodes #
 
 head_node.head.next = second_node
 second_node.next = third_node
+third_node.next = fourth_node
 
 
 print(head_node.head.data)
 print(head_node.head.next.data)
 print(head_node.head.next.next.data)
-print(head_node.head.next.next.next)
 
 
+
+data_to_search = 4
+
+
+
+def find(data):
+    current = head_node.head
+    result = False
+    while current != None:
+        value = current.data
+        if data == value:
+            result = True
+            break
+        
+        current = current.next
+    
+    return result
 
 
 
