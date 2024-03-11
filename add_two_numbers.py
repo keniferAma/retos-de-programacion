@@ -138,53 +138,67 @@ class ListNode(object):
 
 # prove with a regular insert, delete, search in a linked list #
     
+
+def find(head, data):
+        """Function to find a value inside the linked list"""
+        current = head
+        result = False
+        while current != None:
+            value = current.data
+            if data == value:
+                result = True
+                break
+            
+            current = current.next
+
+        return result
+
+    
 class PrincipalNode:
     """This class will gives the single nodes values"""
-    def __init__(self, data=0, next=None): # This None because if we're at the end of the node, this must be none.
+    def __init__(self, data=None, next=None): # This None because if we're at the end of the node, this must be none.
         self.data = data
         self.next = next
+
 
 class PrincipalLink:
     """This class will give the head of the list"""
     def __init__(self):
         self.head = PrincipalNode()
 
+    def add(self, data):
+        new_node = PrincipalNode(data)
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
 
-head_node= PrincipalLink()
-head_node.head = PrincipalNode(1)
-second_node = PrincipalNode(2)
-third_node = PrincipalNode(3)
-fourth_node = PrincipalNode(4)
-
-# Linking the nodes #
-
-head_node.head.next = second_node
-second_node.next = third_node
-third_node.next = fourth_node
+        current_node.next = new_node
 
 
-print(head_node.head.data)
-print(head_node.head.next.data)
-print(head_node.head.next.next.data)
-
-
-
-data_to_search = 4
-
-
-
-def find(data):
-    current = head_node.head
-    result = False
-    while current != None:
-        value = current.data
-        if data == value:
-            result = True
-            break
+    def length(self):
+        current_node = self.head
+        total = 0
+        while current_node.next != None:
+            total += 1
+            current_node = current_node.next
         
-        current = current.next
+        print(total)
+
+    def display(self):
+        elements = []
+        current_node = self.head
+        while current_node.next != None:
+            current_node = current_node.next
+            elements.append(current_node.data)
+            
+
+        print(elements)
+
     
-    return result
+    def delete(self, index):
+        
+   
+
 
 
 
