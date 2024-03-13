@@ -166,6 +166,7 @@ class PrincipalLink:
     def __init__(self):
         self.head = PrincipalNode()
 
+
     def add(self, data):
         new_node = PrincipalNode(data)
         current_node = self.head
@@ -175,7 +176,17 @@ class PrincipalLink:
         current_node.next = new_node
 
 
-    def length(self):
+    def get_length(self):
+        current_node = self.head
+        total = 0
+        while current_node.next != None:
+            total += 1
+            current_node = current_node.next
+        
+        return total
+    
+
+    def print_length(self):
         current_node = self.head
         total = 0
         while current_node.next != None:
@@ -183,6 +194,7 @@ class PrincipalLink:
             current_node = current_node.next
         
         print(total)
+
 
     def display(self):
         elements = []
@@ -195,10 +207,53 @@ class PrincipalLink:
         print(elements)
 
     
+    def search(self, index):
+        current_node = self.head
+        list_length = self.length()
+        counter = -1
+        while index < list_length:
+            if index == counter:
+                print(current_node.data)
+                break
+
+            current_node = current_node.next
+            counter += 1
+        else:
+            print({'Value not found': 'Index out of range.'})
+
     def delete(self, index):
-        
+        current_node = self.head
+        list_length = self.get_length()
+        counter = 0
+
+        while index < list_length:
+            if index == counter:
+                current_node.next = current_node.next.next
+                break
+            elif index == list_length:
+                current_node.next = None
+
+            current_node = current_node.next
+            counter += 1
+
+        else:
+            print({'Value not found': 'Index out of range.'}) 
+
+
+    
    
 
-
-
-
+nodes = PrincipalLink()
+nodes.add(1)
+nodes.add(3)
+nodes.add(4)
+nodes.display()
+nodes.delete(1)
+nodes.display()
+nodes.add(121)
+nodes.add(78)
+nodes.add(192)
+nodes.add(8)
+nodes.display()
+nodes.delete(6)
+nodes.display()
