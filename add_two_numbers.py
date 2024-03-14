@@ -257,3 +257,62 @@ nodes.add(8)
 nodes.display()
 nodes.delete(6)
 nodes.display()
+
+
+
+# now my final test to make the correct add_two_numbers challenge #
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def adding_two_numbers(l1: ListNode, l2: ListNode) -> ListNode:
+    head = ListNode(0)
+    current = head
+    carry = 0
+
+    while l1 or l2 or carry:
+        val1  = (l1.val if l1 else 0)
+        val2  = (l2.val if l2 else 0)
+        carry, out = divmod(val1+val2 + carry, 10) #The divmod() function is a built-in function in Python that takes two numbers as
+        #arguments and returns a tuple containing the quotient and the remainder of the division operation12. 
+        
+        current.next = ListNode(out)
+        current = current.next
+        
+        l1 = (l1.next if l1 else None)
+        l2 = (l2.next if l2 else None)
+
+    return head.next
+
+
+# Create nodes for the first number (e.g., 123)
+node1_1 = ListNode(3)
+node1_2 = ListNode(2)
+node1_3 = ListNode(1)
+# Link the nodes together
+node1_1.next = node1_2
+node1_2.next = node1_3
+
+# Create nodes for the second number (e.g., 456)
+node2_1 = ListNode(6)
+node2_2 = ListNode(5)
+node2_3 = ListNode(4)
+# Link the nodes together
+node2_1.next = node2_2
+node2_2.next = node2_3
+
+# Now you have two linked lists representing the numbers 123 and 456
+l1 = node1_1
+l2 = node2_1
+
+# Use the function to add the two numbers
+result = adding_two_numbers(l1, l2)
+
+# Print the result
+current = result
+while current is not None:
+    print(current.val, end=' ')
+    current = current.next
+
