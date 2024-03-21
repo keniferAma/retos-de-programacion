@@ -19,7 +19,6 @@
  */"""
 
 import json
-import xml
 
 address = "C:\\Users\\kenifer\\OneDrive\\Documentos\\documento-reto-json-xml.txt"
 information = {'nombre': 'alejandro', 'apellido': 'velez', 'estado civil': 'casado',
@@ -52,7 +51,88 @@ If the file does not exist, it creates a new file for reading and writing.
 end of the file if the file exists. The file opens in the append mode. If the file does not exist, 
 it creates a new file for reading and writing."""
 
+"""REMEMBER: Json supports strings. numbers, booleans, null, arrays, objects"""
+
 
 
 # xml #
 
+import xml.etree.ElementTree as ET
+
+tree = ET.parse('C:\\Users\\kenifer\\OneDrive\\Documentos\\xml-file.xml')
+root = tree.getroot()
+
+print(len(root))
+print(root.tag)
+"""1
+data""" # Getting the tag information
+print(root[0].text)
+"""General document Information"""
+
+print(len(root[0][0].tag))
+"""4"""
+
+print(root[0][0].text)
+"""User information"""
+
+print(root[0][0].tag)
+"""user"""
+
+print(root[0][0].attrib)
+"""{'id': '1'}""" # The attribute is the information inside the tag.
+
+print(root.attrib)
+"""{'date': '21-03-2024'}"""
+
+print(root[0][0][1].text)
+"""Hernandez"""
+
+print(root[0][0].items())
+
+
+# Looping through xml files #
+
+for item in root.iter('name'):
+    print(item.text)
+
+"""Adolfo
+alejandro
+Fernando"""
+
+print(root[0][0].findall('name')[0].text)
+"""Adolfo"""
+
+root[0][0][2].text = "34" # To replace information
+
+print(root[0][0][2].text)
+tree.write('C:\\Users\\kenifer\\OneDrive\\Documentos\\xml-file.xml') # Neccesary to make the changes in the xml file.
+
+#root[0].remove(root[0][1]) # on this case we're removing root[0][1], the user with id=2
+#tree.write('C:\\Users\\kenifer\\OneDrive\\Documentos\\xml-file.xml') 
+
+for item in root.findall('name'):
+    print(item.text)
+
+# This is the same file information #
+"""<data date="21-03-2024"> #ROOT
+    <documentInformation>General document Information #ROOT[0]
+        <user id="1">User information #ROOT[0][0]
+            <name>Adolfo</name> #ROOT[0][0][0]
+            <surname>Hernandez</surname> #ROOT[0][0][1]
+            <age>32</age> #ROOT[0][0][2]
+            <status>single</status>
+        </user>
+        <user id="2">User information #ROOT[0][1]
+            <name>alejandro</name>
+            <surname>Fernandez</surname>
+            <age>21</age> #ROOT[0][1][2]
+            <status>married</status>
+        </user>
+        <user id="3">User information
+            <name>Fernando</name>
+            <surname>Posada</surname>
+            <age>43</age>
+            <status>single</status>
+        </user>
+    </documentInformation>
+</data>"""
