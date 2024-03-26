@@ -169,6 +169,9 @@ print(xml_str)
 
 
 # extra #
+xml_file = 'C:\\Users\\kenifer\\OneDrive\\Documentos\\xml-file.xml'
+json_file = "C:\\Users\\kenifer\\OneDrive\\Documentos\\documento-reto-json-xml.txt"
+
 
 class CustomFile:
     def __init__(self, xml_path=None, json_path=None):
@@ -176,7 +179,7 @@ class CustomFile:
         self.json_path = json_path
 
     def read_xml_file(self):
-        if self.xml_path:
+        if self.xml_path != None:
             if self.xml_path[-4:] == '.xml':
                 tree = ET.parse(self.xml_path)
                 root = tree.getroot()
@@ -189,8 +192,8 @@ class CustomFile:
             return {'Error': 'file not provided'}
             
     def read_json_file(self):
-        if self.json_path:
-            if self.xml_path[-5:] == '.json':
+        if self.json_path != None:
+            if self.json_path[-5:] == '.json':
                 with open(self.json_path, "r+") as file:
                     result = json.load(file)    
 
@@ -200,9 +203,74 @@ class CustomFile:
             
         else:
             return {'Error': 'File not provided'}
+
+
         
-first_try = CustomFile()
-print(first_try.read_xml_file)
+        
+first_try = CustomFile(json_path=json_file)
+print(first_try.read_json_file())
 
 
 
+# MoureDev version #
+import os
+"""The os module in Python provides functions for interacting with the operating system. os comes under Python’s standard utility modules. 
+This module provides a portable way of using operating system-dependent functionality.
+
+Here are some of the functionalities provided by the os module:
+
+os.name: This function gives the name of the imported operating system-dependent module.
+os.getcwd(): This function allows you to see what your current working directory is.
+os.chdir(): This function allows you to set the current working directory to a path of your choice.
+os.listdir(): This function allows you to see all the files in the directory you specify.
+os.mkdir(): This function allows you to create a new directory.
+os.rmdir(): This function allows you to delete a directory.
+os.rename(): This function allows you to rename a file or a directory."""
+
+# class Data:
+
+#     def __init__(self, name, age, birth_date, programming_languages) -> None:
+#         self.name = name
+#         self.age = age
+#         self.birth_date = birth_date
+#         self.programming_languages = programming_languages
+
+
+# with open(xml_file, "r") as xml_data:
+
+#     root = xml.fromstring(xml_data.read())
+#     name = root.find("name").text
+#     age = root.find("age").text
+#     birth_date = root.find("birth_date").text
+#     programming_languages = []
+#     for item in root.find("programming_languages"):
+#         programming_languages.append(item.text)
+
+#     xml_class = Data(name, age, birth_date, programming_languages)
+#     print(xml_class.__dict__)
+
+
+# with open(json_file, "r") as json_data:
+#     json_dict = json.load(json_data)
+#     json_class = Data(
+#         json_dict["name"],
+#         json_dict["age"],
+#         json_dict["birth_date"],
+#         json_dict["programming_languages"]
+#     )
+#     print(json_class.__dict__)
+
+# os.remove(xml_file)
+# os.remove(json_file)
+
+class Prueba__dict__:
+    def __init__(self, nombre, apellido, edad, estado_civil):
+        self.nombre = nombre
+        self.apellido = apellido
+        self.edad = edad
+        self.estado_civil = estado_civil
+
+clase_de_prueba = Prueba__dict__(nombre='Kenifer', apellido='Amariles', edad=30, estado_civil='soltero')
+
+print(clase_de_prueba.__dict__)
+"""{'nombre': 'Kenifer', 'apellido': 'Amariles', 'edad': 30, 'estado_civil': 'soltero'}""" # Look what this does.
