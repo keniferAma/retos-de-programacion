@@ -113,6 +113,36 @@ tree.write('C:\\Users\\kenifer\\OneDrive\\Documentos\\xml-file.xml') # Neccesary
 for item in root.findall('name'):
     print(item.text)
 
+# print the entire file #
+    
+xml_str = ET.tostring(root, encoding='utf8').decode('utf8')
+print(xml_str)
+
+"""<?xml version='1.0' encoding='utf8'?>
+<data date="21-03-2024">
+    <documentInformation>General document Information
+        <user id="1">User information
+            <name>Adolfo</name>
+            <surname>Hernandez</surname>
+            <age>34</age>
+            <status>single</status>
+        </user>
+        <user id="2">User information
+            <name>alejandro</name>
+            <surname>Fernandez</surname>
+            <age>21</age>
+            <status>married</status>
+        </user>
+        <user id="3">User information
+            <name>Fernando</name>
+            <surname>Posada</surname>
+            <age>43</age>
+            <status>single</status>
+        </user>
+    </documentInformation>
+</data>"""
+
+
 # This is the same file information #
 """<data date="21-03-2024"> #ROOT
     <documentInformation>General document Information #ROOT[0]
@@ -136,3 +166,43 @@ for item in root.findall('name'):
         </user>
     </documentInformation>
 </data>"""
+
+
+# extra #
+
+class CustomFile:
+    def __init__(self, xml_path=None, json_path=None):
+        self.xml_path = xml_path
+        self.json_path = json_path
+
+    def read_xml_file(self):
+        if self.xml_path:
+            if self.xml_path[-4:] == '.xml':
+                tree = ET.parse(self.xml_path)
+                root = tree.getroot()
+                xml_str = ET.tostring(root, encoding='utf8').decode('utf8')
+
+                return xml_str
+            else:
+                return {'Error': 'The file is not xml'}
+        else:
+            return {'Error': 'file not provided'}
+            
+    def read_json_file(self):
+        if self.json_path:
+            if self.xml_path[-5:] == '.json':
+                with open(self.json_path, "r+") as file:
+                    result = json.load(file)    
+
+                return result
+            else:
+                return {'Error': 'The file is json'}
+            
+        else:
+            return {'Error': 'File not provided'}
+        
+first_try = CustomFile()
+print(first_try.read_xml_file)
+
+
+
