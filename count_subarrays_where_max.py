@@ -18,28 +18,29 @@ Explanation: No subarray contains the element 4 at least 3 times."""
 
 
 
-nums = [1, 2, 1, 4, 5, 1, 4, 3, 2, 1, 3]
+nums = [1,4,2,1,2,3,4,7,4,2]
 k = 2
 
-def subarra_counter(array, k):
-    counter = 0
-    end_init = len(array)
-    init_end = 0
-    sub_array = array[init_end: end_init]
 
-    for item_1 in sub_array:
-        temporal_counter = 0
-        for item_2 in sub_array:
-            if item_1 == item_2:
-                temporal_counter += 1
-        if temporal_counter - 1 >= k:
-            counter += 1
-    
-        if end_init - init_end <= 1:
-            end_init -= 1
-    
+def subarray_counter(number_list, k):
+    init = 0
+    end = len(nums)
+    sub_array = number_list[init: end]
+    result = 0
+    while True:
+        for i in sub_array:
+            temporal_counter = 0
+            for j in sub_array:
+                if i == j:
+                    temporal_counter += 1
+            if temporal_counter >= 2:
+                result += 1
 
+        end -= 1
 
-
-        
+        if end - init <= 1:
+            init += 1
+            end = len(nums)
+            break
+        print(sub_array)
 
