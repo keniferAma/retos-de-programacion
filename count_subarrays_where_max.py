@@ -57,3 +57,49 @@ def subarray_counter(number_list, k):
 
 
 print(subarray_counter(nums, k))
+
+
+# more efficient code provided by Copilot #
+
+from collections import Counter
+
+def subarray_counter(nums, k):
+    # Initialize the result
+    result = 0
+
+    # Iterate over the array
+    for i in range(len(nums)):
+        # Initialize a counter for the current subarray
+        counter = Counter()
+
+        # Iterate over the rest of the array
+        for j in range(i, len(nums)):
+            # Update the counter for the current element
+            counter[nums[j]] += 1
+
+            # If the count of the current element is at least k, increment the result
+            if counter[nums[j]] >= k:
+                result += 1
+
+    # Return the result
+    return result
+
+nums = [1,3,2,3,3]
+k = 2
+print(subarray_counter(nums, k))
+
+
+# Example of Counter #
+
+from collections import Counter
+
+# Count the frequency of each character in a string
+counter = Counter('hello world')
+print(counter)
+# Output: Counter({'l': 3, 'o': 2, 'h': 1, 'e': 1, ' ': 1, 'w': 1, 'r': 1, 'd': 1})
+
+# Find the most common character
+print(counter.most_common(1))
+# Output: [('l', 3)]
+
+print(counter.total())
