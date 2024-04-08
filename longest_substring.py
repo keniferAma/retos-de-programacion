@@ -63,7 +63,7 @@ print(longest_substring('werwwwertuiwwwwww'))
 
 # code provided by copilot #
 
-def longest_substring(s: str) -> int:
+def longest_substringv2(s: str) -> int:
     start = 0
     max_length = 0
     used_char = {}
@@ -77,4 +77,7 @@ def longest_substring(s: str) -> int:
         used_char[s[i]] = i
 
     return max_length
+
+
+print(longest_substringv2('werwwwertuiwwwwww'))
 
