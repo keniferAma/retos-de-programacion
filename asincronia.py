@@ -32,5 +32,24 @@ def main():
     return asyncio.run(sumar(1, 2))
 
 
+#print(main())
+
+
+# exercise IA version #
+
+import asyncio
+import time
+
+async def delay_func(name, delay):
+    print(f'Starting function "{name}"...')
+    print(f'This will take {delay} seconds.')
+    start_time = time.time()
+    await asyncio.sleep(delay)
+    end_time = time.time()
+    print(f'Function "{name}" finished. Start time: {start_time}, End time: {end_time}')
+
+def main():
+    return asyncio.run(delay_func("delay", 3))
+
 print(main())
 
