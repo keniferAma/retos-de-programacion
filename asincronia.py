@@ -51,5 +51,34 @@ async def delay_func(name, delay):
 def main():
     return asyncio.run(delay_func("delay", 3))
 
-print(main())
+#print(main())
 
+
+
+# extra challenge #
+
+
+async def delay_function(name, delay):
+    print(f'Starting function "{name}"...')
+    print(f'This will take {delay} seconds.')
+    start_time = time.time()
+    await asyncio.sleep(delay)
+    end_time = time.time()
+    print(f'Function "{name}" finished. Start time: {start_time}, End time: {end_time}')
+    return end_time - start_time
+
+
+
+async def main():
+    await asyncio.gather( # The 'await' force this 'gather' function to finishes to continue the function process
+        delay_function('function A', 1),
+        delay_function('function B', 2),
+        delay_function('function C', 3),
+    )
+        
+    return await delay_function('function D', 1)    
+
+
+if __name__ == '__main__':
+    print(asyncio.run(main()))
+    
