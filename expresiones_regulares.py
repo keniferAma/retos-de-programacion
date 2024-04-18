@@ -79,3 +79,19 @@ phone_string = '+57 3137576362'
 phone_pattern = r'(\+[0-9]{2,3})?\s?[0-9]{10}'
 
 print(re.search(phone_pattern, phone_string))
+
+
+
+# regular expression for url #
+
+url_string = 'www.google.com.co'
+url_pattern = r'^(www.|http://|https://)[\w]{1,}\.(com|es|)(.es|.co)?$'
+
+url_concurrency = re.match(url_pattern, url_string)
+
+if url_concurrency:
+    print(url_concurrency.group())
+
+else:
+    print('The string is not an url')
+
