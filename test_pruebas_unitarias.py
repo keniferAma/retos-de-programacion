@@ -16,41 +16,36 @@
  * - Un segundo que determine que los datos introducidos son correctos.
  */"""
 
-from piedra_papel_tijera import combinations
-from functiones_de_testeo import sumar, login, LanguageModel
 import pytest
 
-@pytest.mark.parametrize( # When testing multiple parameters
-        'input_x, input_y, input_z, expected',
-        [
-            (('S', 'R'), ('S', 'R'), ('S', 'R'), 'player 2'), # passing the parameters among tuples.
-            (('S', 'R'), ('S', 'P'), ('R', 'R'), 'player 2'),
-            (('R', 'S'), ('R', 'S'), ('R', 'S'), 'Player 1'),
-        ]   
-)
-def test_combinations(input_x, input_y, input_z, expected):
-    assert combinations([input_x, input_y, input_z]) == expected
+class Fruit:
+    def __init__(self, name):
+        self.name = name
+        self.cubed = False
 
+    def cube(self):
+        self.cubed = True
 
-def test_sumar_function():
-    assert sumar(1, 2) == 3
+class FruitSalad:
+    def __init__(self, *fruit_bowl):
+        self.fruit = fruit_bowl
+        self._cube_fruit()
 
+    def _cube_fruit(self):
+        for fruit in self.fruit:
+            fruit.cube()
 
-def test_login():
-    assert login('keniferamariles', 123456) # si es true, entonces no es necesario == True
+# Arrange
+@pytest.fixture
+def fruit_bowl():
+    return [Fruit("apple"), Fruit("banana")]
 
-def test_login_fails():
-    assert not login('alejandro', 123)
+def test_fruit_salad(fruit_bowl):
+    # Act
+    fruit_salad = FruitSalad(*fruit_bowl)
 
-
-def test_get_languages_not_none():
-    """test the get_language method has values"""
-    languages = LanguageModel.get_languages()
-    assert languages != None
-
-def test_every_item_in_get_languages_is_greater_than_zero():
-    for language in LanguageModel.get_languages():
-        assert len(language) > 0
+    # Assert
+    assert all(fruit.cubed for fruit in fruit_salad.fruit)
 
 
 
