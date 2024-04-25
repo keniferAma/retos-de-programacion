@@ -2,6 +2,7 @@
 import httpx
 import time
 import asyncio
+from typing import Any
 
 
 
@@ -105,9 +106,50 @@ async def async_fetch():
 
     print(result)
 
+
 init = time.time()
 asyncio.run(async_fetch())
 """[<Response [200 OK]>, <Response [200 OK]>, <Response [200 OK]>, <Response [200 OK]>]"""
 """0.6505711078643799""" # Execution time decreases 
 end = time.time()
 print(end - init)
+
+
+
+# Let's practice the httpx explanation by Arjan #
+
+BASE_URL = 'https://httpbin.org'
+
+async def get_function(client: httpx.AsyncClient) -> dict:
+    reqs = await client.get(f'{BASE_URL}/get')
+    return reqs.json()
+
+async def post_function(client: httpx.AsyncClient) -> dict:
+    post_info = {"key": "value"}
+    reqs = await client.post(f'{BASE_URL}/post', data=post_info)
+    return reqs.json()
+
+async def update_function(client: httpx.AsyncClient) -> dict:
+    put_data = {"key": "value"}
+    reqs = await client.put(f'{BASE_URL}/put', data=put_data)
+    return reqs.json()
+
+
+async def main() -> Any:
+    init = time.time()
+    client = httpx.AsyncClient()
+
+    tasks = [
+        update_function(client),
+        post_function(client),
+        update_function(client)
+    ]
+
+    results = await asyncio.gather(*tasks)
+
+    for result in results:
+        print(result)
+    end = time.time()
+    print(end - init)
+
+asyncio.run(main())
