@@ -70,3 +70,12 @@ print(next(yield_result))
 21
 28
 36"""
+
+# recursividad #
+
+def count_ten(i=1):
+    if i <= 10:
+        print(i)
+        count_ten(i + 1)
+
+print(count_ten())
