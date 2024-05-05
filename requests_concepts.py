@@ -5,6 +5,9 @@ import time
 HTTP_URL = 'https://httpbin.org'
 
 
+# By the usual way, we're creating a new connection or session every request we do. 
+# while with requests.Session we're reusing the request, because of that by session is faster.
+
 def fetch_get() -> Any:
     r = requests.get(f'{HTTP_URL}/get')
     return r.json()
