@@ -116,3 +116,36 @@ set_list = set(lista_1)
 
 
 print(set_list)
+
+
+
+# version by copilot #
+# as we can see, the function 'set' can do everything.
+
+# DIFICULTAD EXTRA #
+lista_1 = ['caballo', 'vaca', 'cerdo', 'gato', 'perro', 'burro', 'pajaro']
+lista_2 = ['elefante', 'jirafa', 'cerdo', 'burro', 'avestruz', 'cisne']
+
+# Convertir las listas a conjuntos
+conjunto_1 = set(lista_1)
+conjunto_2 = set(lista_2)
+
+# Union
+union = conjunto_1.union(conjunto_2)
+print("Unión:", union)
+
+# Intersección
+interseccion = conjunto_1.intersection(conjunto_2)
+print("Intersección:", interseccion)
+
+# Diferencia conjunto_1/conjunto_2
+diferencia_1 = conjunto_1.difference(conjunto_2)
+print("Diferencia conjunto_1/conjunto_2:", diferencia_1)
+
+# Diferencia conjunto_2/conjunto_1
+diferencia_2 = conjunto_2.difference(conjunto_1)
+print("Diferencia conjunto_2/conjunto_1:", diferencia_2)
+
+# Diferencia simétrica
+diferencia_simetrica = conjunto_1.symmetric_difference(conjunto_2)
+print("Diferencia simétrica:", diferencia_simetrica)
