@@ -45,3 +45,55 @@ def define_weekday(n: int) -> str:
 
 print(define_weekday(6))
 """SATURDAY"""
+
+
+# Extra #
+
+class OrderStatus(Enum):
+    PENDING = 'pending'
+    SENT = 'sent'
+    CANCELED = 'canceled'
+    DELIVERED = 'delivered'
+
+class Order:
+    def __init__(self, guide_number: int):
+        self.guide_number = guide_number
+        self.order_status = OrderStatus.PENDING
+
+    def send(self):
+        if self.order_status == OrderStatus.DELIVERED:
+            print(f'Guide {self.guide_number} was already delivered')
+
+        elif self.order_status == OrderStatus.SENT:
+            print(f'Guide {self.guide_number} is already on road')
+        
+        else:
+            self.order_status = OrderStatus.SENT
+
+    def cancel(self):
+        if self.order_status == OrderStatus.CANCELED:
+            print(f'Guide {self.guide_number} was already canceled')
+        
+        elif self.order_status == OrderStatus.DELIVERED:
+            print(f'Guide {self.guide_number} was already delivered')
+
+        else: 
+            self.order_status = OrderStatus.CANCELED
+            
+    def confirm_order(self):
+        if self.order_status == OrderStatus.SENT:
+            self.order_status = OrderStatus.DELIVERED
+        else:
+            print(f'Guide {self.guide_number} must be send before')
+
+    def show_current_status(self):
+        return f'Guide {self.guide_number} in {self.order_status.value} status'
+
+
+
+packet1 = Order(1)
+packet1.send()
+packet1.cancel()
+packet1.confirm_order()
+
+
