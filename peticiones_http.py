@@ -13,3 +13,44 @@
  * - Muestra los juegos en los que aparece
  * - Controla posibles errores
  */"""
+
+
+import httpx
+import requests
+import asyncio
+
+url = 'https://developer.mozilla.org'
+
+client = requests.Session()
+
+response = client.get(url=url)
+
+print(response.status_code)
+
+
+
+
+class Client:
+    def __init__(self, url: str) -> None:
+        self.client = httpx.AsyncClient(base_url=url)
+    
+
+    async def fetch_cors_information(self):
+        response = await self.client.get('/en-US/docs/Web/HTTP/CORS#what_requests_use_cors')
+        print(response.status_code)
+        
+    async def fetch_authentication(self):
+        response = await self.client.get('/en-US/docs/Web/HTTP/Authentication')
+        print(response.status_code)
+
+
+default_client = Client(url)
+
+
+async def main():
+    await asyncio.gather( # gather must be AWAITED.
+        default_client.fetch_authentication(),
+        default_client.fetch_cors_information() 
+    )
+
+asyncio.run(main())
