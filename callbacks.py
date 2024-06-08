@@ -33,7 +33,7 @@ class CallbackClass:
     def update_value(self, new_value):
         self.value = new_value
         print(f"Value updated to {self.value}")
-        
+
 
 def add_values(x: int, y: int, callback: CallbackClass):
     result = x + y
@@ -41,3 +41,34 @@ def add_values(x: int, y: int, callback: CallbackClass):
 
 callback_instance = CallbackClass()
 add_values(10, 20, callback_instance)  # Output: Value updated to 30
+
+
+
+# extra #
+import asyncio
+from random import randint
+
+
+def pedido_confirmado(pedido: str) -> str:
+    print(f'El pedido ha sido confirmado, su plato es {pedido}')
+
+def pedido_listo(pedido: str) -> str:
+    print(f'Su pedido con su plato {pedido} ya se encuentra listo.')
+
+def entregar_pedido(pedido: str) -> str:
+    print(f'Su pedido con su plato {pedido} ha sido entregado, !Que lo disfrutes!')
+
+
+async def pedidos(plato: str, confirmacion: pedido_confirmado, listo: pedido_listo, entrega: entregar_pedido):
+    numero_aleatorio = randint(1, 10)
+    confirmacion(plato)
+    await asyncio.sleep(numero_aleatorio) 
+    numero_aleatorio = randint(1, 10)
+    listo(plato)
+    await asyncio.sleep(numero_aleatorio)
+    numero_aleatorio = randint(1, 10)
+    entrega(plato)
+
+asyncio.run(pedidos('pasta', pedido_confirmado, pedido_listo, entregar_pedido))
+
+
