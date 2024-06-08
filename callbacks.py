@@ -70,5 +70,8 @@ async def pedidos(plato: str, confirmacion: pedido_confirmado, listo: pedido_lis
     entrega(plato)
 
 asyncio.run(pedidos('pasta', pedido_confirmado, pedido_listo, entregar_pedido))
+asyncio.run(pedidos('tarta', pedido_confirmado, pedido_listo, entregar_pedido))
+asyncio.run(pedidos('sancocho', pedido_confirmado, pedido_listo, entregar_pedido))
+asyncio.run(pedidos('arroz con pollo', pedido_confirmado, pedido_listo, entregar_pedido))
 
 
