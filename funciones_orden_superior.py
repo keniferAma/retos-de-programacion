@@ -1,10 +1,10 @@
 """/*
  * EJERCICIO:
- * Explora el concepto de funciones de orden superior en tu lenguaje 
+ * Explora el concepto de funciones de orden superior en tu lenguaje
  * creando ejemplos simples (a tu elección) que muestren su funcionamiento.
  *
  * DIFICULTAD EXTRA (opcional):
- * Dada una lista de estudiantes (con sus nombres, fecha de nacimiento y 
+ * Dada una lista de estudiantes (con sus nombres, fecha de nacimiento y
  * lista de calificaciones), utiliza funciones de orden superior para
  * realizar las siguientes operaciones de procesamiento y análisis:
  * - Promedio calificaciones: Obtiene una lista de estudiantes por nombre
@@ -57,4 +57,80 @@ reduce_result = reduce(reduce_function, range(1, 20))
 print(reduce_result)
 """121645100408832000"""
 
+
+# extra challenge #
+
+estudiantes = {
+    'alejandro': {
+        'calificaciones':{
+            'matematicas': 6.0,
+            'ingles': 2.9,
+            'sociales': 4.3,
+            'filosofia': 4.8
+            },
+        'fecha de nacimiento': '12/14/2000'
+    },
+    'felipe': {
+        'calificaciones':{
+            'matematicas': 9.0,
+            'ingles': 2.0,
+            'sociales': 5.3,
+            'filosofia': 1.8
+            },
+        'fecha de nacimiento': '12/22/1993'
+    },
+    'carlos': {
+        'calificaciones':{
+            'matematicas': 9.0,
+            'ingles': 8.9,
+            'sociales': 6.3,
+            'filosofia': 7.8
+            },
+        'fecha de nacimiento': '11/30/1987'
+    },
+    'fernando': {
+        'calificaciones':{
+            'matematicas': 6.0,
+            'ingles': 9.8,
+            'sociales': 2.3,
+            'filosofia': 4.2
+            },
+        'fecha de nacimiento': '02/10/2003'
+    },
+}
+
+
+def puntajes(estudiante: str):
+    puntaje = []
+    for key, value in estudiantes[estudiante]['calificaciones'].items():
+        puntaje.append(value)
+
+    resultado = reduce(lambda v1, v2: v1 + v2, puntaje) / len(puntaje)
+    return resultado
+
+
+def promedio(diccionario: dict):
+    for estudiante in diccionario:
+        promedio_calificaciones = puntajes(estudiante)
+        print(f'{estudiante}, promedio de sus materias: {promedio_calificaciones}')
+
+
+promedio(estudiantes)
+
+
+# opcion de copilot para el primer punto #
+
+# Algo para destacar con respecto al mio, es que en la funcion 'promedio' estamos usando la clave, valor 
+# del diccionario en cuestion.
+
+def promedio_calificaciones(estudiante: dict) -> float:
+    calificaciones = estudiante['calificaciones'].values()
+    return sum(calificaciones) / len(calificaciones)
+
+def promedio(diccionario: dict):
+    for nombre, estudiante in diccionario.items():
+        promedio_estudiante = promedio_calificaciones(estudiante)
+        print(f'{nombre}, promedio de sus materias: {promedio_estudiante:.2f}')
+
+# promedio(estudiantes)
 
