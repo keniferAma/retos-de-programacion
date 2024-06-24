@@ -68,7 +68,7 @@ estudiantes = {
             'sociales': 4.3,
             'filosofia': 4.8
             },
-        'fecha de nacimiento': '12/14/2000'
+        'fecha de nacimiento': '12/04/2000'
     },
     'felipe': {
         'calificaciones':{
@@ -77,7 +77,7 @@ estudiantes = {
             'sociales': 5.3,
             'filosofia': 1.8
             },
-        'fecha de nacimiento': '12/22/1993'
+        'fecha de nacimiento': '12/01/1993'
     },
     'carlos': {
         'calificaciones':{
@@ -86,7 +86,7 @@ estudiantes = {
             'sociales': 6.3,
             'filosofia': 7.8
             },
-        'fecha de nacimiento': '11/30/1987'
+        'fecha de nacimiento': '11/12/1987'
     },
     'fernando': {
         'calificaciones':{
@@ -99,6 +99,10 @@ estudiantes = {
     },
 }
 
+
+# EXTRA #
+
+# Promedio de calificaciones #
 
 def puntajes(estudiante: str):
     puntaje = []
@@ -123,14 +127,49 @@ promedio(estudiantes)
 # Algo para destacar con respecto al mio, es que en la funcion 'promedio' estamos usando la clave, valor 
 # del diccionario en cuestion.
 
-def promedio_calificaciones(estudiante: dict) -> float:
-    calificaciones = estudiante['calificaciones'].values()
+def promedio_calificaciones(informacion_estudiante: dict) -> float:
+    calificaciones = informacion_estudiante['calificaciones'].values()
     return sum(calificaciones) / len(calificaciones)
 
 def promedio(diccionario: dict):
-    for nombre, estudiante in diccionario.items():
-        promedio_estudiante = promedio_calificaciones(estudiante)
-        print(f'{nombre}, promedio de sus materias: {promedio_estudiante:.2f}')
+    for estudiante, info_estudiante in diccionario.items():
+        promedio_estudiante = promedio_calificaciones(info_estudiante)
+        print(f'{estudiante}, promedio de sus materias: {promedio_estudiante:.2f}')
 
 # promedio(estudiantes)
 
+
+# Mejores estudiantes #
+
+def mejores_estudiantes(diccionario: dict) -> str:
+    resultado = []
+    for estudiante, info_estudiante in diccionario.items():
+        promedio_estudiante = promedio_calificaciones(info_estudiante)
+        if promedio_estudiante >= 5:
+            resultado.append(estudiante)
+
+    return f'Los mejores estudiantes fueron: {', '.join(resultado)}'
+
+# print(mejores_estudiantes(estudiantes))
+
+
+
+# Lista de estudiantes desde el mas joven #
+from datetime import datetime
+
+mas_jovenes = sorted(
+    [estu for estu in estudiantes], key=lambda estu: datetime.strptime( # 'key' para filtrar la lista
+        estudiantes[estu]['fecha de nacimiento'], '%d/%m/%Y'
+    ), reverse=True
+)
+
+
+print(mas_jovenes)
+
+
+# Calificacion mas alta #
+
+calificacion_alta = max(map(lambda student: max(estudiantes[student]['calificaciones'].values()),
+                            [estudiante for estudiante in estudiantes]))
+
+print(calificacion_alta)
