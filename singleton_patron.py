@@ -161,3 +161,38 @@ instancia7 = NoAttributes()
 
 print(instancia6 is instancia7)
 
+
+
+# EXTRA #
+
+@singleton
+class UserSession:
+    id: int = None
+    username: str = None
+    name: str = None
+    email: str = None
+
+    def set_user(self, id, username, name, email):
+        self.id = id
+        self.username = username
+        self.name = name
+        self.email = email
+
+    def get_user(self):
+        return f'{self.id}, {self.username}, {self.name}, {self.email}'
+    
+    def clear_user(self):
+        self.id = None
+        self.username = None
+        self.name = None
+        self.email = None
+
+
+session1 = UserSession()
+session1.set_user(1, 'nene', 'kenifer', 'kenifer@misena.edu.co')
+
+session2 = UserSession()
+print(session2.get_user())
+"""1, nene, kenifer, kenifer@misena.edu.co"""
+print(session1 is session2)
+"""True"""
