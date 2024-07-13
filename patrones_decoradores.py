@@ -33,4 +33,54 @@ def print_numbers(limit: int) -> None:
     for n in range(limit + 1):
         print(n)
 
-print_numbers(100000)
+print_numbers(10)
+
+
+# EXTRA #
+
+def function_counter_v1(function: Callable[[str], str]) -> Callable:
+    counter = []
+    
+    def wrap(*args, **kwargs) -> str:
+        counter.append(function(*args, **kwargs))
+        return(f'The function "{function.__name__} is repeated {len(counter)} times')
+    
+    return wrap
+        
+
+@function_counter_v1
+def print_message_v1(message: str) -> str:
+    return message
+
+print(print_message_v1('This is my message'))
+print(print_message_v1('This is my message'))
+print(print_message_v1('This is my message'))
+
+
+
+from collections import Counter
+from typing import Counter
+
+def function_counter_v2(function: Callable[[str], str]):
+    counter = dict()
+
+    def wrap(*args, **kwargs) -> dict:
+        if function.__name__ not in counter:
+            counter[function.__name__] = 1
+        else:
+            counter[function.__name__] += 1
+        return counter
+    
+    return wrap
+        
+@function_counter_v2
+def print_message_v2(message: str) -> str:
+    return message
+
+
+print(print_message_v2('This is my message'))
+print(print_message_v2('This is my message'))
+print(print_message_v2('This is my message'))
+print(print_message_v2('This is my message'))
+
+
