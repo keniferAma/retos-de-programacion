@@ -32,3 +32,20 @@ print(len(myclass_instance1)) # Here takes in action __len__ when we use len(<in
 print(myclass_instance1 < myclass_instance2)
 """TypeError: '<' not supported between instances of 'MyClass' and 'MyClass'""" # with __lt__ not implemented (<, >, are the trigger)
 """False""" # when __lt__ is implemented
+
+
+class AnotherClass:
+    def __init__(self, value):
+        self.value = value
+
+    def __add__(self, another_value):
+        return another_value
+    
+    def __repr__(self):
+        return str(self.value)
+    
+
+anotherclass_instance1 = AnotherClass(1)
+anotherclass_instance2 = AnotherClass(2)
+
+print(anotherclass_instance2 + anotherclass_instance1) # The position in which we operate is REELEVANT
