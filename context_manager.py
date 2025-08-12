@@ -21,3 +21,23 @@ context manager closed
 
 # Basicamente esto es lo que pasa tras bambalinas cuando usamos 'with',
 # con el que basicamente estamos creando un context manager.
+
+
+from contextlib import asynccontextmanager
+from asyncio import sleep
+import asyncio
+
+@asynccontextmanager
+async def context_function(input_message: str, end_message: str, time_between: float):
+    print(input_message)
+    await sleep(time_between)
+    yield 
+    print(end_message)
+
+
+async def prueba():
+    async with context_function("hello", "bye", 3.2) as context_f:
+        print(context_f)
+
+asyncio.run(prueba())
+
