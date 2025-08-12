@@ -69,3 +69,42 @@ example_1.substrating()
 print(example_1)
 print(example_1.size())
         
+
+
+from dataclasses import dataclass
+
+@dataclass
+class Account:
+    account_holder: str
+    deposit: int
+
+    def add_founds(self, amount: int):
+        self.deposit += amount
+
+    def withdraw(self, amount: int):
+        if amount <= self.deposit:
+            self.deposit -= amount
+        else:
+            f'insuficient founds in deposit'
+
+    def __lt__(self, other: 'Account'):
+        return other.deposit > self.deposit # based on the instance position.
+    
+    def __add__(self, other: 'Account'):
+        return other.deposit + self.deposit
+    
+
+kenifer = Account(account_holder='kenifer', deposit=250000)
+camilo = Account(account_holder='camilo', deposit=300000)
+
+
+kenifer_n_camilo_total = kenifer + camilo
+
+
+print(kenifer_n_camilo_total)
+print(camilo < kenifer)
+
+kenifer.add_founds(200000)
+
+print(camilo < kenifer)
+
